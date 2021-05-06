@@ -1,10 +1,25 @@
-import {TodolistType} from "../App";
+import {FilterValuesType, TodolistType} from "../App";
 import {v1} from "uuid";
-import {idID} from "@material-ui/core/locale";
 
-type ActionType = {
-    type: string
-    [key: string]: any
+type ActionType = RemoveTodolistActionType | AddTodolistActionType
+    | ChangeTodolistTitleActionType | ChangeTodolistFilterActionType
+export type RemoveTodolistActionType = {
+    type:'REMOVE-TODOLIST'
+    id: string
+}
+export type AddTodolistActionType = {
+    type: 'ADD-TODOLIST'
+    title: string
+}
+export type ChangeTodolistTitleActionType = {
+    type: 'CHANGE-TODOLIST-TITLE'
+    id: string
+    title: string
+}
+export type ChangeTodolistFilterActionType = {
+    type: 'CHANGE-TODOLIST-FILTER'
+    id: string
+    filter: FilterValuesType
 }
 
 export const todolistsReducer = (state: Array<TodolistType>, action: ActionType): Array<TodolistType> => {
@@ -38,5 +53,17 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionType)
         default:
             throw new Error("I don't understand this type")
     }
+}
+export const RemoveTodolistAC = (todolistId: string): RemoveTodolistActionType  => {
+    return { type: 'REMOVE-TODOLIST', id: todolistId}
+}
+export const AddTodolistAC = (title: string): AddTodolistActionType  => {
+    return { type: "ADD-TODOLIST", title}
+}
+export const ChangeTodolistTitleAC = (title: string, id: string): ChangeTodolistTitleActionType  => {
+    return { type: "CHANGE-TODOLIST-TITLE", title,id}
+}
+export const ChangeTodolistFilterAC = (filter: FilterValuesType, id: string): ChangeTodolistFilterActionType  => {
+    return { type: "CHANGE-TODOLIST-FILTER", filter,id}
 }
 
