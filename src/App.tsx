@@ -14,20 +14,13 @@ export type  TodolistType = {
     filter: FilterValuesType
 
 }
-type TaskStateType = {
+export type TaskStateType = {
     [key: string]: Array<TaskType>
 }
 
 function App() {
 
 
-    function changeFilter(value: FilterValuesType, todolistId: string) {
-        let todolist = todolists.find(tl => tl.id === todolistId)
-        if (todolist) {
-            todolist.filter = value
-            setTodolists([...todolists])
-        }
-    }
 
     function removeTask(id: string, todolistId: string) {
         let todolistTasks = tasks[todolistId]
@@ -59,6 +52,14 @@ function App() {
         if (task) {
             task.title = newTitle
             setTasks({...tasks})
+        }
+    }
+
+    function changeFilter(value: FilterValuesType, todolistId: string) {
+        let todolist = todolists.find(tl => tl.id === todolistId)
+        if (todolist) {
+            todolist.filter = value
+            setTodolists([...todolists])
         }
     }
 
