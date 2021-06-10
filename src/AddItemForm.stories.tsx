@@ -18,7 +18,7 @@ export default {
 
 const Template: Story<AddItemFormPropsType> = (args:AddItemFormPropsType) => <AddItemForm {...args} />;
 
-export const AddItemFormExample = Template.bind({});
-AddItemFormExample.args = {
+export const AddItemFormBaseExample = Template.bind({});
+AddItemFormBaseExample.args = {
   addItem: action("Button inside form clicked")
 }
